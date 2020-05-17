@@ -56,3 +56,53 @@ class LinkedBag:
 
     def is_empty(self):
         return self._size == 0
+
+
+class ArrayBagTest(unittest.TestCase):
+    def test_empty_bag(self):
+        bag = ArrayBag(10)
+        self.assertEqual(0, bag._size, msg='Bag should be empty')
+        self.assertTrue(bag.is_empty(), msg='Bag should be empty')
+
+    def test_add(self):
+        bag = ArrayBag(10)
+        for i in range(10):
+            bag.add(i)
+        count = 0
+        for item in bag:
+            count += 1
+            self.assertIsNotNone(item, msg='Item should not be None')
+        self.assertEqual(count, bag._size, msg=f'Bag should have {count} items')
+        self.assertSequenceEqual(list(range(10)), list(bag), msg='All items added to the bag should be in the Bag')
+
+    def test_add_full(self):
+        capacity = 10
+        bag = ArrayBag(capacity)
+        for i in range(10):
+            bag.add(i)
+        with self.assertRaises(IndexError):
+            bag.add(10)
+
+
+class LinkedBagTest(unittest.TestCase):
+    def test_empty_bag(self):
+        bag = LinkedBag()
+        self.assertEqual(0, bag._size, msg='Bag should be empty')
+        self.assertTrue(bag.is_empty(), msg='Bag should be empty')
+
+    def test_add(self):
+        bag = LinkedBag()
+        lst = range(10)
+        for i in lst:
+            bag.add(i)
+        count = 0
+        for item in bag:
+            count += 1
+            self.assertIsNotNone(item, msg='Item should not be None')
+        self.assertEqual(count, bag._size, msg=f'Bag should have {count} items')
+        for e, a in zip([Node(i) for i in lst[::-1]], list(bag)):
+            self.assertEqual(e, a, msg='Should be equal')
+
+
+if __name__ == "__main__":
+    unittest.main()
