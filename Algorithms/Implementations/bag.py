@@ -1,9 +1,10 @@
+import numpy as np
 import unittest
 
 
 class ArrayBag:
     def __init__(self, capacity):
-        self._items = [None] * capacity
+        self._items = np.zeros(capacity)
         self._size = 0
 
     def get_size(self):
@@ -19,28 +20,39 @@ class ArrayBag:
         return self._size == 0
 
 
-class BagTest(unittest.TestCase):
-    def test_empty_bag(self):
-        bag = ArrayBag(10)
-        self.assertEqual(0, bag._size, msg='Bag should be empty')
-        self.assertTrue(bag.is_empty(), msg='Bag should be empty')
+class Node:
+    def __init__(self, item, next=None):
+        self.item = item
+        self.next = next
 
-    def test_add(self):
-        bag = ArrayBag(10)
-        bag.add(1)
-        count = 0
-        for item in iter(bag):
-            count += 1
-            self.assertIsNotNone(item, msg='Item should not be None')
-        self.assertEqual(count, bag._size, msg=f'Bag should have {count} items')
-
-    def test_add_full(self):
-        capacity = 10
-        bag = ArrayBag(capacity)
-        for i in range(1):
-            bag.add(i)
-        self.assertRaises(IndexError, bag.add(10), msg=f'Bag can only hold {capacity} items')
+    def __eq__(self, other):
+        if type(other) is not type(self):
+            return False
+        return self.item == other.item
 
 
-if __name__ == "__main__":
-    unittest.main()
+class LinkedBag:
+    def __init__(self):
+        self._first = None
+        self._next = None
+        self._size = 0
+
+    def get_size(self):
+        return self._size
+
+    def add(self, item):
+        self._first = Node(item, self._first)
+        self._size += 1
+
+    def __iter__(self):
+        self._next = self._first
+        return self
+
+    def __next__(self):
+        if self._next is None:
+            raise StopIteration
+        item, self._next = self._next, self._next.next
+        return item
+
+    def is_empty(self):
+        return self._size == 0
