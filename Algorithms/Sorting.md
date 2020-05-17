@@ -7,7 +7,7 @@
 #### `Bag`
 
 A `Bag` is a collection where removing item is not supported, its purpose is to provide the ability to collect items and then iterate through the collected items. It also include the ability to test if the `Bag` is empty and find the number of items.  
-In [`bag.py`](Implementations/bag.py) two implementations can be found, one that uses an `Array` to store the items, and one that uses a `Linked List`.
+In [`bag.py`](https://github.com/SoftwareDevolopmentSem1/Exam-Notes/blob/master/Algorithms/Implementations/bag.py) two implementations can be found, one that uses an `Array` to store the items, and one that uses a `Linked List`.
 
 #### `Queue`
 
