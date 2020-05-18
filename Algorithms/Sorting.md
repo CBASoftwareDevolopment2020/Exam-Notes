@@ -4,14 +4,38 @@
 
 ### _knows_ the basic data structures `Bag`, `Queue`, and `Stack`
 
+| Method  | `Bag`       | `Queue`     | `Stack`     |
+|---------|-------------|-------------|-------------|
+| add     | `add()`     | `enqueue()` | `push()`    |
+| remove  |             | `dequeue()` | `pop()`     |
+| isEmpty | `isEmpty()` | `isEmpty()` | `isEmpty()` |
+| size    | `size()`    | `size()`    | `size()`    |
+
 #### `Bag`
 
-A `Bag` is a collection where removing item is not supported, its purpose is to provide the ability to collect items and then iterate through the collected items. It also include the ability to test if the `Bag` is empty and find the number of items.  
-In [`bag.py`](Implementations/bag.py) two implementations can be found, one that uses an `Array` to store the items, and one that uses a `Linked List`.
+![Operations on a `Bag`](../images/Operations_on_a_bag.PNG)
+
+A `Bag` is a collection where removing item is not supported, its purpose is to provide the ability to collect items
+and then iterate through the collected items. It also include the ability to test if the `Bag` is empty and find the
+number of items. The order of iteration is unspecified.  
+In [`bag.py`](Implementations/bag.py) two implementations can be found, one that uses an `Array` to store the items,
+and one that uses a `Linked List`.
 
 #### `Queue`
 
+![A typical FIFO `Queue`](../images/A_typical_FIFO_queue.PNG)
+
+A `Queue` is a collection that is based on the first-in-first-out policy. When iterating through a `Queue`, the items
+are processed in the order they where added to the `Queue`.  
+In [`queue.py`](Implementations/queue.py) two implementations can be found, one that uses a `List` to store the items,
+and one that uses a `Linked List`.
+
 #### `Stack`
+
+![Operations on a pushdown `Stack`](../images/Operations_on_a_pushdown_stack.PNG)
+
+A `Stack` is a collection that is based on the last-in-first-out policy. When iterating through a `Stack`, the items
+are processed in reverse of the order in which they where added.
 
 ### _knows_ selection sort and its complexity
 
