@@ -9,7 +9,7 @@
 | add     | `add()`     | `enqueue()` | `push()`    |
 | remove  |             | `dequeue()` | `pop()`     |
 | isEmpty | `isEmpty()` | `isEmpty()` | `isEmpty()` |
-| size    | `size()`    | `size()`    | `size()`    |
+| size    | `getSize()` | `getSize()` | `getSize()` |
 
 #### `Bag`
 
@@ -35,7 +35,9 @@ and one that uses a `Linked List`.
 ![Operations on a pushdown `Stack`](../images/Operations_on_a_pushdown_stack.PNG)
 
 A `Stack` is a collection that is based on the last-in-first-out policy. When iterating through a `Stack`, the items
-are processed in reverse of the order in which they where added.
+are processed in reverse of the order in which they where added.  
+In [`stack.py`](Implementations/stack.py) two implementations can be found, one that uses a `List` to store the items,
+and one that uses a `Linked List`.
 
 ### _knows_ selection sort and its complexity
 

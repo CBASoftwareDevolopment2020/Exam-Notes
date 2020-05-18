@@ -1,17 +1,17 @@
 from utils import Node
 
 
-class ArrayQueue:
+class ArrayStack:
     def __init__(self):
         self._items = []
         self._size = 0
 
-    def enqueue(self, item):
+    def push(self, item):
         self._items.append(item)
         self._size += 1
 
-    def dequeue(self):
-        item = self._items.pop(0)
+    def pop(self):
+        item = self._items.pop()
         self._size -= 1
         return item
 
@@ -25,25 +25,18 @@ class ArrayQueue:
         yield from self._items[:self._size]
 
 
-class LinkedQueue:
+class LinkedStack:
     def __init__(self):
-        self._first = None
         self._last = None
         self._size = 0
         self._next = None
 
-    def enqueue(self, item):
-        if self._last:
-            new = Node(item, None, self._last)
-            self._last.next, self._last = new, new
-        else:
-            self._first = self._last = Node(item)
+    def push(self, item):
+        self._last = Node(item, self._last)
         self._size += 1
 
-    def dequeue(self):
-        item, self._first = self._first.item, self._first.next
-        if self._first is None:
-            self._last = None
+    def pop(self):
+        item, self._last = self._last.item, self._last.next
         self._size -= 1
         return item
 
@@ -54,7 +47,7 @@ class LinkedQueue:
         return self._size
 
     def __iter__(self):
-        self._next = self._first
+        self._next = self._last
         return self
 
     def __next__(self):

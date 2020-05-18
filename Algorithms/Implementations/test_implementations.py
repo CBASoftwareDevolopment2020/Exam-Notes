@@ -2,6 +2,7 @@ import unittest
 
 from bag import ArrayBag, LinkedBag
 from queue import ArrayQueue, LinkedQueue
+from stack import ArrayStack, LinkedStack
 from utils import Node
 
 
@@ -11,19 +12,19 @@ class NodeTest(unittest.TestCase):
         node = Node(value)
         self.assertEqual(value, node.item, msg=f'Node item should be {value}')
 
-    def test_node_prev(self):
+    def test_next(self):
+        value = 0
+        nxt = Node(value)
+        node = Node(8, nxt)
+
+        self.assertEqual(value, node.next.item, msg=f'Node next item should be {value}')
+
+    def test_prev(self):
         value = 0
         prev = Node(value)
         node = Node(8, prev=prev)
 
         self.assertEqual(value, node.prev.item, msg=f'Node prev item should be {value}')
-
-    def next(self):
-        value = 0
-        next = Node(value)
-        node = Node(8, next)
-
-        self.assertEqual(value, node.next.item, msg=f'Node next item should be {value}')
 
 
 class ArrayBagTest(unittest.TestCase):
@@ -73,71 +74,138 @@ class LinkedBagTest(unittest.TestCase):
 
 
 class ArrayQueueTest(unittest.TestCase):
-    def test_empty_bag(self):
-        bag = ArrayQueue()
-        self.assertEqual(0, bag.get_size(), msg='Queue should be empty')
-        self.assertTrue(bag.is_empty(), msg='Queue should be empty')
+    def test_empty_queue(self):
+        queue = ArrayQueue()
+        self.assertEqual(0, queue.get_size(), msg='Queue should be empty')
+        self.assertTrue(queue.is_empty(), msg='Queue should be empty')
 
     def test_dequeue_empty(self):
-        bag = ArrayQueue()
+        queue = ArrayQueue()
         with self.assertRaises(IndexError):
-            bag.dequeue()
+            queue.dequeue()
 
     def test_enqueue(self):
-        bag = ArrayQueue()
+        queue = ArrayQueue()
         lst = range(10)
         for i in lst:
-            bag.enqueue(i)
+            queue.enqueue(i)
         count = 0
-        for i, item in enumerate(bag):
+        for i, item in enumerate(queue):
             count += 1
             self.assertEqual(lst[i], item, msg='Items should be in the right order')
-        self.assertEqual(len(lst), bag.get_size(), msg=f'Queue should have {len(lst)} items')
+        self.assertEqual(len(lst), queue.get_size(), msg=f'Queue should have {len(lst)} items')
         self.assertEqual(len(lst), count, msg=f'Queue should have {len(lst)} items')
-        self.assertSequenceEqual(lst, list(bag), msg='All items added to the Queue should be in the Queue')
+        self.assertSequenceEqual(lst, list(queue), msg='All items added to the Queue should be in the Queue')
 
     def test_dequeue(self):
-        bag = ArrayQueue()
+        queue = ArrayQueue()
         lst = range(10)
         for i in lst:
-            bag.enqueue(i)
+            queue.enqueue(i)
         for e in lst:
-            self.assertEqual(e, bag.dequeue(), msg='Items should be in the right order')
+            self.assertEqual(e, queue.dequeue(), msg='Items should be in the right order')
 
 
 class LinkedQueueTest(unittest.TestCase):
-    def test_empty_bag(self):
-        bag = LinkedQueue()
-        self.assertEqual(0, bag.get_size(), msg='Queue should be empty')
-        self.assertTrue(bag.is_empty(), msg='Queue should be empty')
+    def test_empty_queue(self):
+        queue = LinkedQueue()
+        self.assertEqual(0, queue.get_size(), msg='Queue should be empty')
+        self.assertTrue(queue.is_empty(), msg='Queue should be empty')
 
     def test_enqueue(self):
-        bag = LinkedQueue()
+        queue = LinkedQueue()
         lst = range(10)
         for i in lst:
-            bag.enqueue(i)
+            queue.enqueue(i)
         count = 0
-        for item in bag:
+        for item in queue:
             count += 1
             self.assertIsNotNone(item, msg='Item should not be None')
-        for e, a in zip(lst, list(bag)):
+        for e, a in zip(lst, list(queue)):
             self.assertEqual(e, a, msg='Should be equal')
-        self.assertEqual(len(lst), bag.get_size(), msg=f'Queue should have {len(lst)} items')
+        self.assertEqual(len(lst), queue.get_size(), msg=f'Queue should have {len(lst)} items')
         self.assertEqual(len(lst), count, msg=f'Queue should have {len(lst)} items')
-        self.assertSequenceEqual(lst, list(bag), msg='All items added to the Queue should be in the Queue')
+        self.assertSequenceEqual(lst, list(queue), msg='All items added to the Queue should be in the Queue')
 
     def test_dequeue(self):
-        bag = LinkedQueue()
+        queue = LinkedQueue()
         lst = range(10)
         for i in lst:
-            bag.enqueue(i)
+            queue.enqueue(i)
         for e in lst:
-            self.assertEqual(e, bag.dequeue(), msg='Items should be in the right order')
+            self.assertEqual(e, queue.dequeue(), msg='Items should be in the right order')
 
     def test_dequeue_empty(self):
-        bag = LinkedQueue()
+        queue = LinkedQueue()
         with self.assertRaises(AttributeError):
-            bag.dequeue()
+            queue.dequeue()
+
+
+class ArrayStackTest(unittest.TestCase):
+    def test_empty_stack(self):
+        stack = ArrayStack()
+        self.assertEqual(0, stack.get_size(), msg='Stack should be empty')
+        self.assertTrue(stack.is_empty(), msg='Stack should be empty')
+
+    def test_pop_empty(self):
+        stack = ArrayStack()
+        with self.assertRaises(IndexError):
+            stack.pop()
+
+    def test_push(self):
+        stack = ArrayStack()
+        lst = range(10)
+        for i in lst:
+            stack.push(i)
+        count = 0
+        for i, item in enumerate(stack):
+            count += 1
+            self.assertEqual(lst[i], item, msg='Items should be in the right order')
+        self.assertEqual(len(lst), stack.get_size(), msg=f'Stack should have {len(lst)} items')
+        self.assertEqual(len(lst), count, msg=f'Stack should have {len(lst)} items')
+        self.assertSequenceEqual(lst, list(stack), msg='All items added to the Stack should be in the Stack')
+
+    def test_pop(self):
+        stack = ArrayStack()
+        lst = range(10)
+        for i in lst:
+            stack.push(i)
+        for e in lst[::-1]:
+            self.assertEqual(e, stack.pop(), msg='Items should be in the right order')
+
+
+class LinkedStackTest(unittest.TestCase):
+    def test_empty_stack(self):
+        stack = LinkedStack()
+        self.assertEqual(0, stack.get_size(), msg='Stack should be empty')
+        self.assertTrue(stack.is_empty(), msg='Stack should be empty')
+
+    def test_pop_empty(self):
+        stack = LinkedStack()
+        with self.assertRaises(AttributeError):
+            stack.pop()
+
+    def test_push(self):
+        stack = LinkedStack()
+        lst = range(10)
+        for i in lst:
+            stack.push(i)
+        count = 0
+        lst = lst[::-1]
+        for i, item in enumerate(stack):
+            count += 1
+            self.assertEqual(lst[i], item, msg='Items should be in the right order')
+        self.assertEqual(len(lst), stack.get_size(), msg=f'Stack should have {len(lst)} items')
+        self.assertEqual(len(lst), count, msg=f'Stack should have {len(lst)} items')
+        self.assertSequenceEqual(lst, list(stack), msg='All items added to the Stack should be in the Stack')
+
+    def test_pop(self):
+        stack = LinkedStack()
+        lst = range(10)
+        for i in lst:
+            stack.push(i)
+        for e in lst[::-1]:
+            self.assertEqual(e, stack.pop(), msg='Items should be in the right order')
 
 
 if __name__ == "__main__":
