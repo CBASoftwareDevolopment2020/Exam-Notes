@@ -50,10 +50,10 @@ and one that uses a `Linked List`.
 
 <table>
     <tr>
-        <td colspan="4">Selection Sort</td>
+        <td style="text-align:center;" colspan="4">Selection Sort</td>
     </tr>
     <tr>
-        <td colspan="3">Time Complexity</td>
+        <td style="text-align:center;" colspan="3">Time Complexity</td>
         <td>Space Complexity</td>
     </tr>
     <tr>
