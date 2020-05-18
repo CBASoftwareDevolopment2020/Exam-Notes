@@ -41,19 +41,35 @@ and one that uses a `Linked List`.
 
 ### _knows_ selection sort and its complexity
 
-| Index  |   0   |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |
-|--------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Init   | __6__ |   4   | __1__ |   8   |   9   |   2   |   7   |   5   |   3   |
-| Iter 1 |  _1_  | __4__ |   6   |   8   |   9   | __2__ |   7   |   5   |   3   |
-| Iter 2 |  _1_  |  _2_  | __6__ |   8   |   9   |   4   |   7   |   5   | __3__ |
-| Iter 3 |  _1_  |  _2_  |  _3_  | __8__ |   9   | __4__ |   7   |   5   |   6   |
-| Iter 4 |  _1_  |  _2_  |  _3_  |  _4_  | __9__ |   8   |   7   | __5__ |   6   |
-| Iter 5 |  _1_  |  _2_  |  _3_  |  _4_  |  _5_  | __8__ |   7   |   9   | __6__ |
-| Iter 6 |  _1_  |  _2_  |  _3_  |  _4_  |  _5_  |  _6_  | __7__ |   9   |   8   |
-| Iter 7 |  _1_  |  _2_  |  _3_  |  _4_  |  _5_  |  _6_  |  _7_  | __9__ | __8__ |
-| Iter 8 |  _1_  |  _2_  |  _3_  |  _4_  |  _5_  |  _6_  |  _7_  |  _8_  |  _9_  |
+1. set the first item in the unsorted array as minimum
+2. find minimum in the rest of the unsorted array
+3. swap the first item with minimum
+4. repeat until index equals length
 
-O(n<sup>2</sup>)
+![](../images/Trace_of_selection_sort.PNG)
+
+<table>
+    <tr>
+        <td colspan="4">Selection Sort</td>
+    </tr>
+    <tr>
+        <td colspan="3">Time Complexity</td>
+        <td>Space Complexity</td>
+    </tr>
+    <tr>
+        <td>Best Case</td>
+        <td>Average Case</td>
+        <td>Worst Case</td>
+        <td>Worst Case</td>
+    </tr>
+    <tr>
+        <td>O(n<sup>2</sup>)</td>
+        <td>O(n<sup>2</sup>)</td>
+        <td>O(n<sup>2</sup>)</td>
+        <td>O(1)</td>
+    </tr>
+</table>
+
 
 
 ### _knows_ the concept of divide and conquer algorithms and their complexity
