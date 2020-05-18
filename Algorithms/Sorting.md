@@ -46,31 +46,15 @@ and one that uses a `Linked List`.
 3. swap the first item with minimum
 4. repeat until index equals length
 
-![](../images/Trace_of_selection_sort.PNG)
+![Trace of Selection Sort](../images/Trace_of_selection_sort.PNG)
 
-<table>
-    <tr>
-        <td style="text-align:center;" colspan="4">Selection Sort</td>
-    </tr>
-    <tr>
-        <td style="text-align:center;" colspan="3">Time Complexity</td>
-        <td>Space Complexity</td>
-    </tr>
-    <tr>
-        <td>Best Case</td>
-        <td>Average Case</td>
-        <td>Worst Case</td>
-        <td>Worst Case</td>
-    </tr>
-    <tr>
-        <td>O(n<sup>2</sup>)</td>
-        <td>O(n<sup>2</sup>)</td>
-        <td>O(n<sup>2</sup>)</td>
-        <td>O(1)</td>
-    </tr>
-</table>
+Time Complexity
 
+| Best Case        | Average Case     | Worst Case       |
+|:----------------:|:----------------:|:----------------:|
+| O(n<sup>2</sup>) | O(n<sup>2</sup>) | O(n<sup>2</sup>) |
 
+In [`sorting.py`](Implementations/sorting.py) an implementation of Selection Sort can be found.
 
 ### _knows_ the concept of divide and conquer algorithms and their complexity
 

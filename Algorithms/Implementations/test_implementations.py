@@ -1,7 +1,9 @@
+from random import shuffle
 import unittest
 
 from bag import ArrayBag, LinkedBag
 from queue import ArrayQueue, LinkedQueue
+from sorting import selection_sort
 from stack import ArrayStack, LinkedStack
 from utils import Node
 
@@ -206,6 +208,37 @@ class LinkedStackTest(unittest.TestCase):
             stack.push(i)
         for e in lst[::-1]:
             self.assertEqual(e, stack.pop(), msg='Items should be in the right order')
+
+
+class SelectionSortTest(unittest.TestCase):
+    def test_sort_empty(self):
+        expected = []
+        actual = selection_sort(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_one(self):
+        expected = [1]
+        actual = selection_sort(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort(self):
+        expected = list(range(10))
+        shuffle(expected)
+        actual = selection_sort(expected, timeout=1)
+        expected = list(range(10))
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_timeout(self):
+        expected = list(range(1_000_000))
+        shuffle(expected)
+        with self.assertRaises(TimeoutError):
+            actual = selection_sort(expected, timeout=1)
 
 
 if __name__ == "__main__":
