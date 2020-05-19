@@ -58,6 +58,35 @@ In [`sorting.py`](Implementations/sorting.py) an implementation of Selection Sor
 
 ### _knows_ the concept of divide and conquer algorithms and their complexity
 
+Time Complexity
+
+| Algorithm  | Best Case  | Average Case | Worst Case       |
+|:----------:|:----------:|:------------:|:----------------:|
+| Merge Sort | O(n log n) | O(n log n)   | O(n log n)       |
+| Quick Sort | O(n log n) | O(n log n)   | O(n<sup>2</sup>) |
+
+#### Merge Sort
+
+Merge Sort: to sort an array, divide it into two halves, sort the two halves (recursively), and then merge the results.
+As you will see, one of Merge Sort’s most attractive properties is that it guarantees to sort any array of `N` items in
+time proportional to `N log N`. Its prime disadvantage is that it uses extra space proportional to `N`.
+
+##### Top-down
+
+![Trace of Top-down Merge Sort](../images/Trace_of_top-down_merge_sort.PNG)
+
+##### Bottom-up
+
+![Trace of Bottom-up Merge Sort](../images/Trace_of_bottom-up_merge_sort.PNG)
+
+#### Quick Sort
+
+![Trace of Quick Sort](../images/Trace_of_quick_sort.PNG)
+
+##### 3-way partitioning
+
+![Trace of Quick Sort](../images/Trace_of_3-way_partition_quick_sort.PNG)
+
 ### _knows_ the difference between time and space complexity
 
 ### _knows_ what defines a stable sorting algorithm

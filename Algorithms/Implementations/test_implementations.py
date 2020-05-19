@@ -3,40 +3,46 @@ import unittest
 
 from bag import ArrayBag, LinkedBag
 from queue import ArrayQueue, LinkedQueue
-from sorting import selection_sort
+from sorting import selection_sort, top_down_merge_sort
 from stack import ArrayStack, LinkedStack
 from utils import Node
 
 
 class NodeTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = Node
+
     def test_node_item(self):
         value = 0
-        node = Node(value)
+        node = self.ds(value)
         self.assertEqual(value, node.item, msg=f'Node item should be {value}')
 
     def test_next(self):
         value = 0
-        nxt = Node(value)
-        node = Node(8, nxt)
+        nxt = self.ds(value)
+        node = self.ds(8, nxt)
 
         self.assertEqual(value, node.next.item, msg=f'Node next item should be {value}')
 
     def test_prev(self):
         value = 0
-        prev = Node(value)
-        node = Node(8, prev=prev)
+        prev = self.ds(value)
+        node = self.ds(8, prev=prev)
 
         self.assertEqual(value, node.prev.item, msg=f'Node prev item should be {value}')
 
 
 class ArrayBagTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = ArrayBag
+
     def test_empty_bag(self):
-        bag = ArrayBag(10)
+        bag = self.ds(10)
         self.assertEqual(0, bag.get_size(), msg='Bag should be empty')
         self.assertTrue(bag.is_empty(), msg='Bag should be empty')
 
     def test_add(self):
-        bag = ArrayBag(10)
+        bag = self.ds(10)
         for i in range(10):
             bag.add(i)
         count = 0
@@ -48,7 +54,7 @@ class ArrayBagTest(unittest.TestCase):
 
     def test_add_full(self):
         capacity = 10
-        bag = ArrayBag(capacity)
+        bag = self.ds(capacity)
         for i in range(10):
             bag.add(i)
         with self.assertRaises(IndexError):
@@ -56,13 +62,16 @@ class ArrayBagTest(unittest.TestCase):
 
 
 class LinkedBagTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = LinkedBag
+
     def test_empty_bag(self):
-        bag = LinkedBag()
+        bag = self.ds()
         self.assertEqual(0, bag.get_size(), msg='Bag should be empty')
         self.assertTrue(bag.is_empty(), msg='Bag should be empty')
 
     def test_add(self):
-        bag = LinkedBag()
+        bag = self.ds()
         lst = range(10)
         for i in lst:
             bag.add(i)
@@ -76,18 +85,21 @@ class LinkedBagTest(unittest.TestCase):
 
 
 class ArrayQueueTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = ArrayQueue
+
     def test_empty_queue(self):
-        queue = ArrayQueue()
+        queue = self.ds()
         self.assertEqual(0, queue.get_size(), msg='Queue should be empty')
         self.assertTrue(queue.is_empty(), msg='Queue should be empty')
 
     def test_dequeue_empty(self):
-        queue = ArrayQueue()
+        queue = self.ds()
         with self.assertRaises(IndexError):
             queue.dequeue()
 
     def test_enqueue(self):
-        queue = ArrayQueue()
+        queue = self.ds()
         lst = range(10)
         for i in lst:
             queue.enqueue(i)
@@ -100,7 +112,7 @@ class ArrayQueueTest(unittest.TestCase):
         self.assertSequenceEqual(lst, list(queue), msg='All items added to the Queue should be in the Queue')
 
     def test_dequeue(self):
-        queue = ArrayQueue()
+        queue = self.ds()
         lst = range(10)
         for i in lst:
             queue.enqueue(i)
@@ -109,13 +121,16 @@ class ArrayQueueTest(unittest.TestCase):
 
 
 class LinkedQueueTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = LinkedQueue
+
     def test_empty_queue(self):
-        queue = LinkedQueue()
+        queue = self.ds()
         self.assertEqual(0, queue.get_size(), msg='Queue should be empty')
         self.assertTrue(queue.is_empty(), msg='Queue should be empty')
 
     def test_enqueue(self):
-        queue = LinkedQueue()
+        queue = self.ds()
         lst = range(10)
         for i in lst:
             queue.enqueue(i)
@@ -130,7 +145,7 @@ class LinkedQueueTest(unittest.TestCase):
         self.assertSequenceEqual(lst, list(queue), msg='All items added to the Queue should be in the Queue')
 
     def test_dequeue(self):
-        queue = LinkedQueue()
+        queue = self.ds()
         lst = range(10)
         for i in lst:
             queue.enqueue(i)
@@ -138,24 +153,27 @@ class LinkedQueueTest(unittest.TestCase):
             self.assertEqual(e, queue.dequeue(), msg='Items should be in the right order')
 
     def test_dequeue_empty(self):
-        queue = LinkedQueue()
+        queue = self.ds()
         with self.assertRaises(AttributeError):
             queue.dequeue()
 
 
 class ArrayStackTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = ArrayStack
+
     def test_empty_stack(self):
-        stack = ArrayStack()
+        stack = self.ds()
         self.assertEqual(0, stack.get_size(), msg='Stack should be empty')
         self.assertTrue(stack.is_empty(), msg='Stack should be empty')
 
     def test_pop_empty(self):
-        stack = ArrayStack()
+        stack = self.ds()
         with self.assertRaises(IndexError):
             stack.pop()
 
     def test_push(self):
-        stack = ArrayStack()
+        stack = self.ds()
         lst = range(10)
         for i in lst:
             stack.push(i)
@@ -168,7 +186,7 @@ class ArrayStackTest(unittest.TestCase):
         self.assertSequenceEqual(lst, list(stack), msg='All items added to the Stack should be in the Stack')
 
     def test_pop(self):
-        stack = ArrayStack()
+        stack = self.ds()
         lst = range(10)
         for i in lst:
             stack.push(i)
@@ -177,18 +195,21 @@ class ArrayStackTest(unittest.TestCase):
 
 
 class LinkedStackTest(unittest.TestCase):
+    def setUp(self):
+        self.ds = LinkedStack
+
     def test_empty_stack(self):
-        stack = LinkedStack()
+        stack = self.ds()
         self.assertEqual(0, stack.get_size(), msg='Stack should be empty')
         self.assertTrue(stack.is_empty(), msg='Stack should be empty')
 
     def test_pop_empty(self):
-        stack = LinkedStack()
+        stack = self.ds()
         with self.assertRaises(AttributeError):
             stack.pop()
 
     def test_push(self):
-        stack = LinkedStack()
+        stack = self.ds()
         lst = range(10)
         for i in lst:
             stack.push(i)
@@ -202,7 +223,7 @@ class LinkedStackTest(unittest.TestCase):
         self.assertSequenceEqual(lst, list(stack), msg='All items added to the Stack should be in the Stack')
 
     def test_pop(self):
-        stack = LinkedStack()
+        stack = self.ds()
         lst = range(10)
         for i in lst:
             stack.push(i)
@@ -211,25 +232,26 @@ class LinkedStackTest(unittest.TestCase):
 
 
 class SelectionSortTest(unittest.TestCase):
+    def setUp(self):
+        self.alg = selection_sort
+
     def test_sort_empty(self):
         expected = []
-        actual = selection_sort(expected)
+        actual = self.alg(expected, timeout=1)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
 
     def test_sort_one(self):
         expected = [1]
-        actual = selection_sort(expected)
+        actual = self.alg(expected, timeout=1)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
 
     def test_sort(self):
-        expected = list(range(10))
-        shuffle(expected)
-        actual = selection_sort(expected, timeout=1)
-        expected = list(range(10))
+        expected = list('AEELMOPRSTX')
+        actual = self.alg(list('SORTEXAMPLE'), timeout=1)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
@@ -238,7 +260,33 @@ class SelectionSortTest(unittest.TestCase):
         expected = list(range(1_000_000))
         shuffle(expected)
         with self.assertRaises(TimeoutError):
-            actual = selection_sort(expected, timeout=1)
+            self.alg(expected, timeout=1)
+
+
+class TopDownMergeSortTest(unittest.TestCase):
+    def setUp(self):
+        self.alg = top_down_merge_sort
+
+    def test_sort_empty(self):
+        expected = []
+        actual = self.alg(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_one(self):
+        expected = [1]
+        actual = self.alg(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort(self):
+        expected = list('AEEEEGLMMOPRRSTX')
+        actual = self.alg(list('MERGESORTEXAMPLE'))
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
 
 
 if __name__ == "__main__":
