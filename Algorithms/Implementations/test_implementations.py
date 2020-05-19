@@ -3,7 +3,7 @@ import unittest
 
 from bag import ArrayBag, LinkedBag
 from queue import ArrayQueue, LinkedQueue
-from sorting import selection_sort, top_down_merge_sort
+from sorting import bottom_up_merge_sort, insertion_sort, selection_sort, top_down_merge_sort
 from stack import ArrayStack, LinkedStack
 from utils import Node
 
@@ -236,22 +236,84 @@ class SelectionSortTest(unittest.TestCase):
         self.alg = selection_sort
 
     def test_sort_empty(self):
-        expected = []
-        actual = self.alg(expected, timeout=1)
+        actual = expected = []
+        self.alg(expected)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
 
     def test_sort_one(self):
-        expected = [1]
-        actual = self.alg(expected, timeout=1)
+        actual = expected = [1]
+        self.alg(expected)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
 
     def test_sort(self):
-        expected = list('AEELMOPRSTX')
-        actual = self.alg(list('SORTEXAMPLE'), timeout=1)
+        actual, expected = list('SORTEXAMPLE'), list('AEELMOPRSTX')
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_large(self):
+        actual = expected = list(range(2 ** 10))
+        shuffle(actual)
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sorted(self):
+        actual = expected = list(range(10))
+        self.alg(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_timeout(self):
+        expected = list(range(1_000_000))
+        shuffle(expected)
+        with self.assertRaises(TimeoutError):
+            self.alg(expected, timeout=1)
+
+
+class InsertionSortTest(unittest.TestCase):
+    def setUp(self):
+        self.alg = insertion_sort
+
+    def test_sort_empty(self):
+        actual = expected = []
+        self.alg(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_one(self):
+        actual = expected = [1]
+        self.alg(expected)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort(self):
+        actual, expected = list('SORTEXAMPLE'), list('AEELMOPRSTX')
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_large(self):
+        actual = expected = list(range(2 ** 10))
+        shuffle(actual)
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sorted(self):
+        actual = expected = list(range(10))
+        self.alg(expected)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
@@ -268,22 +330,78 @@ class TopDownMergeSortTest(unittest.TestCase):
         self.alg = top_down_merge_sort
 
     def test_sort_empty(self):
-        expected = []
-        actual = self.alg(expected)
+        actual = expected = []
+        self.alg(actual)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
 
     def test_sort_one(self):
-        expected = [1]
-        actual = self.alg(expected)
+        actual = expected = [1]
+        self.alg(actual)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)
 
     def test_sort(self):
-        expected = list('AEEEEGLMMOPRRSTX')
-        actual = self.alg(list('MERGESORTEXAMPLE'))
+        actual, expected = list('MERGESORTEXAMPLE'), list('AEEEEGLMMOPRRSTX')
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_large(self):
+        actual = expected = list(range(2 ** 10))
+        shuffle(actual)
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sorted(self):
+        actual = expected = list(range(10))
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+
+class BottomUpMergeSortTest(unittest.TestCase):
+    def setUp(self):
+        self.alg = bottom_up_merge_sort
+
+    def test_sort_empty(self):
+        actual = expected = []
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_one(self):
+        actual = expected = [1]
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort(self):
+        actual, expected = list('MERGESORTEXAMPLE'), list('AEEEEGLMMOPRRSTX')
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sort_large(self):
+        actual = expected = list(range(2 ** 10))
+        shuffle(actual)
+        self.alg(actual)
+        self.assertEqual(expected, actual)
+        self.assertCountEqual(expected, actual)
+        self.assertSequenceEqual(expected, actual)
+
+    def test_sorted(self):
+        actual = expected = list(range(10))
+        self.alg(actual)
         self.assertEqual(expected, actual)
         self.assertCountEqual(expected, actual)
         self.assertSequenceEqual(expected, actual)

@@ -71,13 +71,46 @@ Merge Sort: to sort an array, divide it into two halves, sort the two halves (re
 As you will see, one of Merge Sort’s most attractive properties is that it guarantees to sort any array of `N` items in
 time proportional to `N log N`. Its prime disadvantage is that it uses extra space proportional to `N`.
 
+##### In-place merging
+
+The straightforward approach to implementing merging is to design a method that merges two disjoint ordered arrays of
+Comparable objects into a third array. This strategy is easy to implement: create an output array of the requisite size
+and then choose successively the smallest remaining item from the two input arrays to be the next item added to the
+output array.  
+However, when we Merge Sort a large array, we are doing a huge number of merges, so the cost of creating a new array to
+hold the output every time that we do a merge is problematic. It would be much more desirable to have an in-place method
+so that we could sort the first half of the array in place, then sort the second half of the array in place, then do the
+merge of the two halves by moving the items around within the array, without using a significant amount of other extra
+space.
+
 ##### Top-down
 
 ![Trace of Top-down Merge Sort](../images/Trace_of_top-down_merge_sort.PNG)
 
+Top-down Merge Sort is a recursive Merge Sort implementation based on this abstract inplace merge. It is one of the
+best-known examples of the utility of the divide-and-conquer paradigm for efficient algorithm design.  
+In [`sorting.py`](Implementations/sorting.py) an implementation of Top-down Merge Sort can be found.
+
+###### Optimizations
+
+__Use insertion sort for small sub arrays__  
+We can improve most recursive algorithms by handling small cases differently, because the recursion guarantees that the
+method will be used often for small cases, so improvements in handling them lead to improvements in the whole algorithm.
+In the case of sorting, we know that insertion sort (or selection sort) is simple and therefore likely to be faster than
+Merge Sort for tiny sub arrays. Switching to insertion sort for small sub arrays (length 15 or less, say) will improve
+the running time of a typical Merge Sort implementation by 10 to 15 percent.
+
+__Test whether the array is already in order__  
+We can reduce the running time to be linear for arrays that are already in order by adding a test to skip the call to
+`merge()` if `a[mid]` is less than or equal to `a[mid+1]`. With this change, we still do all the recursive calls, but
+the running time for any sorted subarray is linear.
+
 ##### Bottom-up
 
 ![Trace of Bottom-up Merge Sort](../images/Trace_of_bottom-up_merge_sort.PNG)
+
+In [`sorting.py`](Implementations/sorting.py) an implementation of Bottom-up Merge Sort can be found.
+
 
 #### Quick Sort
 
