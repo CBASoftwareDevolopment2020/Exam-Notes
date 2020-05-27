@@ -9,7 +9,7 @@
 - _knows_ the complexities of search trees and hash tables
 - _knows_ the Knuth-Morris-Pratt algorithm
 - _knows_ the Boyer-Moore algorithm
-- _knows_ the Comsky language hierarchy
+- _knows_ the Chomsky language hierarchy
 - _knows_ the recursive definition of regular expressions
 
 ## Abilities

@@ -27,7 +27,7 @@
 | Knowledge | _knows_ the Knuth-Morris-Pratt algorithm                                                                   | Searching                            | String Searches                       | 08      |
 | Knowledge | _knows_ the Boyer-Moore algorithm                                                                          | Searching                            | String Searches                       | 08      |
 | Abilities | is _able_ to elaborate on challenges in substring searches, complexity, worst case                         | Searching                            | String Searches                       | 08      |
-| Knowledge | _knows_ the Comsky language hierarchy                                                                      | Searching                            | Regular Expressions                   | 09      |
+| Knowledge | _knows_ the Chomsky language hierarchy                                                                     | Searching                            | Regular Expressions                   | 09      |
 | Knowledge | _knows_ the recursive definition of regular expressions                                                    | Searching                            | Regular Expressions                   | 09      |
 | Abilities | is _able_ to convert a regular expression into a finite state automoton                                    | Searching                            | Regular Expressions                   | 09      |
 | Knowledge | _knows_ parallel edges and self-loops                                                                      | [Graphs](Algorithms/Graphs.md)       | Graphs introduction                   | 10      |
