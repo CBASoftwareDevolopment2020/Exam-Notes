@@ -14,21 +14,21 @@
 ![Operations on a `Bag`](../Assets/Images/Operations_on_a_bag.PNG)
 
 A `Bag` is a collection where removing item is not supported, its purpose is to provide the ability to collect items and then iterate through the collected items. It also include the ability to test if the `Bag` is empty and find the number of items. The order of iteration is unspecified.  
-In [`bag.py`](Implementations/bag.py) two implementations can be found, one that uses an `Array` to store the items, and one that uses a `Linked List`.
+In [`bag.py`](Implementations/my_bag.py) two implementations can be found, one that uses an `Array` to store the items, and one that uses a `Linked List`.
 
 ### `Queue`
 
 ![A typical FIFO `Queue`](../Assets/Images/A_typical_FIFO_queue.PNG)
 
 A `Queue` is a collection that is based on the first-in-first-out policy. When iterating through a `Queue`, the items are processed in the order they where added to the `Queue`.  
-In [`queue.py`](Implementations/queue.py) two implementations can be found, one that uses a `List` to store the items, and one that uses a `Linked List`.
+In [`queue.py`](Implementations/my_queue.py) two implementations can be found, one that uses a `List` to store the items, and one that uses a `Linked List`.
 
 ### `Stack`
 
 ![Operations on a pushdown `Stack`](../Assets/Images/Operations_on_a_pushdown_stack.PNG)
 
 A `Stack` is a collection that is based on the last-in-first-out policy. When iterating through a `Stack`, the items are processed in reverse of the order in which they where added.  
-In [`stack.py`](Implementations/stack.py) two implementations can be found, one that uses a `List` to store the items, and one that uses a `Linked List`.
+In [`stack.py`](Implementations/my_stack.py) two implementations can be found, one that uses a `List` to store the items, and one that uses a `Linked List`.
 
 ## is _able_ to explain complexity in algorithms using big-O notation
 

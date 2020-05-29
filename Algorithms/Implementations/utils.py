@@ -30,12 +30,12 @@ def is_sorted(arr):
 
 
 class IOHandler:
-    def __init__(self, path):
+    def __init__(self, path: str):
         self.words = self.read_file(path)
         self.sorted_words = sorted(self.words)
 
     @staticmethod
-    def read_file(path) -> list:
+    def read_file(path: str) -> list:
         with open(path, encoding="utf-8-sig") as f:
             content = f.read()
         return IOHandler.sanitize_string(content)

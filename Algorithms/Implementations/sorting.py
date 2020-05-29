@@ -1,5 +1,5 @@
 from time import time
-from random import choice, shuffle
+from random import choice, randint, shuffle
 
 
 def selection_sort(arr, timeout=60):
@@ -80,8 +80,8 @@ def quick_sort(items):
         insertion_sort(arr)
         return arr
     else:
-        # idx = randint(0, n - 1)
-        # a[0], arr[idx] = arr[idx], arr[0]
+        idx = randint(0, n - 1)
+        arr[0], arr[idx] = arr[idx], arr[0]
         pivot = arr[0]
         less = []
         greater = []
@@ -122,21 +122,22 @@ def quick_sort_3way(items):
         return quick_sort_3way(less) + equal + quick_sort_3way(greater)
 
 
+def heapify(data, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    if left < n and data[left] > data[largest]:
+        largest = left
+    if right < n and data[right] > data[largest]:
+        largest = right
+
+    if largest != i:
+        data[i], data[largest] = data[largest], data[i]
+        heapify(data, n, largest)
+
+
 def heap_sort(arr):
-    def heapify(data, n, i):
-        largest = i
-        left = 2 * i + 1
-        right = 2 * i + 2
-
-        if left < n and data[left] > data[largest]:
-            largest = left
-        if right < n and data[right] > data[largest]:
-            largest = right
-
-        if largest != i:
-            data[i], data[largest] = data[largest], data[i]
-            heapify(data, n, largest)
-
     n = len(arr)
     if n < 2:
         return arr
